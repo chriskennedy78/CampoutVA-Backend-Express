@@ -1,11 +1,19 @@
 const express = require("express");
 const morgan = require("morgan");
+const cabinRouter = require("./routes/cabinRouter");
+const membershipRouter = require("./routes/membershipRouter");
+const ticketRouter = require("./routes/ticketRouter");
 
 const hostname = "localhost";
 const port = 3000;
 
 const app = express();
 app.use(morgan("dev"));
+app.use(express.json());
+
+app.use("/cabins", cabinRouter);
+app.use("/memberships", membershipRouter);
+app.use("/tickets", ticketRouter);
 
 app.use(express.static(__dirname + "/public"));
 
